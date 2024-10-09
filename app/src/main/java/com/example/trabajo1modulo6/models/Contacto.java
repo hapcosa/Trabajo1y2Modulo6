@@ -4,6 +4,8 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.time.LocalDate;
+import java.util.Date;
+
 @Entity(tableName = "contactos")
 public class Contacto {
     @PrimaryKey(autoGenerate = true)
@@ -12,13 +14,13 @@ public class Contacto {
     private String telefono;
     private String correo;
     private String imagenRuta;
-    private LocalDate fechaCreacion;
+    private String fechaCreacion;
 
-    public LocalDate getFechaCreacion() {
+    public String getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(LocalDate fechaCreacion) {
+    public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
@@ -52,5 +54,23 @@ public class Contacto {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getContactoId() {
+        return contactoId;
+    }
+    public void setContactoId(int contactoId) {
+        this.contactoId = contactoId;
+    }
+
+    public Contacto(String fechaCreacion, String imagenRuta, String correo, String telefono, String nombre) {
+        this.fechaCreacion = fechaCreacion;
+        this.imagenRuta = imagenRuta;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.nombre = nombre;
+    }
+    public Contacto(){
+
     }
 }

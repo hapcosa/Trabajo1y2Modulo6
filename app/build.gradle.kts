@@ -1,7 +1,7 @@
 plugins {
-    alias(libs.plugins.android.application) version "8.5.1"
+    id("org.jetbrains.kotlin.plugin.compose") version "2.0.20"
+    alias(libs.plugins.android.application) version "8.5.2"
     alias(libs.plugins.jetbrains.kotlin.android) version "2.0.20"
-    kotlin("kapt")
     id("com.google.dagger.hilt.android")
     id("com.google.devtools.ksp")
 
@@ -67,6 +67,8 @@ dependencies {
     implementation(libs.androidx.room.common)
     implementation(libs.androidx.room.common.jvm)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -74,20 +76,14 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(kotlin("stdlib-jdk8"))
-    implementation("com.google.dagger:hilt-android:2.51.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
 
-    implementation("com.google.dagger:dagger-compiler:2.51.1")
-    ksp("com.google.dagger:dagger-compiler:2.51.1")
 
+    val hilt = "2.51.1"
+    implementation("com.google.dagger:hilt-android:$hilt")
+    ksp("com.google.dagger:hilt-compiler:$hilt")
     implementation("androidx.room:room-ktx:2.6.1")
-    implementation("androidx.room:room-runtime:2.6.1")
     ksp("androidx.room:room-compiler:2.6.1")
+    implementation(kotlin("script-runtime"))
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
 
-
-    implementation("androidx.navigation:navigation-compose:2.8.1")
-    implementation("androidx.compose.ui:ui:1.7.2")
-    implementation("androidx.compose.material:material:1.7.2")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.7.2")
 }

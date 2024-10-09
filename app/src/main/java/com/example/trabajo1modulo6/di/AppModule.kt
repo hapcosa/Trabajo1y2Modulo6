@@ -2,8 +2,9 @@ package com.example.trabajo1modulo6.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.trabajo1modulo6.room.Database
+import com.example.trabajo1modulo6.room.DatabaseContactos
 import com.example.trabajo1modulo6.room.contactoDao
+import com.example.trabajo1modulo6.utils.dateFunc
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,21 +15,20 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object appModule{
+object AppModule{
     @Singleton
     @Provides
-    fun providesDataBaseDao(database: Database): contactoDao {
+    fun providesDataBaseDao(database: DatabaseContactos): contactoDao {
         return database.contactoDao()
 
     }
     @Singleton
     @Provides
-    fun providesDatabase(@ApplicationContext context: Context): Database {
+    fun providesContactoDatabase(@ApplicationContext context: Context): DatabaseContactos {
         return Room.databaseBuilder(
             context,
-            Database::class.java,
+            DatabaseContactos::class.java,
             "contactos_db"
-        ).fallbackToDestructiveMigration()
-            .build()
+        ).allowMainThreadQueries().build()
     }
 }

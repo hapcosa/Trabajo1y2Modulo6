@@ -10,8 +10,9 @@ import javax.inject.Inject
 class contactoRepository @Inject constructor(private val contactoDao: contactoDao) {
 
     suspend fun addContacto(contacto: Contacto) =contactoDao.insert(contacto)
-    suspend fun editContacto(Contacto:Contacto) =contactoDao.update(Contacto)
-    suspend fun deleteContacto(Contacto:Contacto) =contactoDao.delete(Contacto)
+    suspend fun editContacto(contacto:Contacto) =contactoDao.update(contacto)
+    suspend fun deleteContacto(contacto:Contacto) =contactoDao.delete(contacto)
     fun getAllContactos(): Flow<List<Contacto>> = contactoDao.getAll().flowOn(Dispatchers.IO).conflate()
     fun getContactWithId(contactoId: Int): Flow<Contacto> = contactoDao.getContactWithId(contactoId).flowOn(Dispatchers.IO).conflate()
+    fun getContactById(contactoId: Int): Contacto = contactoDao.getContactById(contactoId)
 }

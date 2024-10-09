@@ -15,16 +15,17 @@ interface contactoDao {
     fun getAll(): Flow<List<Contacto>>
 
     @Query("SELECT * FROM contactos WHERE contactoId = :contactoId")
-    fun getContactWithId(contactoId: Int):Flow<Contacto>
+     fun getContactWithId(contactoId: Int):Flow<Contacto>
 
-
+    @Query("SELECT * FROM contactos WHERE contactoId = :contactoId")
+     fun getContactById(contactoId: Int):Contacto
     @Delete
-    fun delete(contacto: Contacto)
+    suspend fun delete(contacto: Contacto)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(contacto: Contacto)
+    suspend fun insert(contacto: Contacto)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun update(contacto: Contacto)
+    suspend fun update(contacto: Contacto)
 
 }
